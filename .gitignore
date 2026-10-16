@@ -1,0 +1,29 @@
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# IDE files
+.vscode/
+.idea/
+
+# Local environment variables and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Generated output
+results/*.png
+results/*.gif
+results/*.mp4
+
+# System files
+.DS_Store
+Thumbs.db
