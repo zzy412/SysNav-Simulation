@@ -1,7 +1,7 @@
 
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.animation import FuncAnimation
+from matplotlib.animation import FuncAnimation, PillowWriter
 
 from algorithms.astar import astar
 from algorithms.exploration import RoomExplorer
@@ -82,6 +82,11 @@ planner = SemanticPlanner()
 
 for name, info in rooms.items():
     scene.add_room(name, info["waypoint"])
+
+import os
+
+OUTPUT_GIF = "assets/semantic_explore.gif"
+os.makedirs("assets", exist_ok=True)
 
 task = "Find the refrigerator."
 target = planner.parse_task(task)
@@ -244,7 +249,6 @@ print("Total movement steps:", len(positions) - 1)
 print("\nObserved scene graph:")
 scene.show_rooms()
 
-
 # =====================================
 # 8. Animate recorded movement
 # =====================================
@@ -291,7 +295,6 @@ ax.set_ylabel("Grid Row")
 ax.legend()
 ax.grid(alpha=0.2)
 
-
 def update(frame):
     row, col = positions[frame]
 
@@ -312,7 +315,6 @@ def update(frame):
 
     return robot_marker, trajectory_line, status_text
 
-
 ani = FuncAnimation(
     fig,
     update,
@@ -321,5 +323,12 @@ ani = FuncAnimation(
     repeat=False,
     blit=False
 )
+
+print("Saving GIF...")
+ani.save(
+    OUTPUT_GIF,
+    writer=PillowWriter(fps=10)
+)
+print(f"GIF saved to: {OUTPUT_GIF}")
 
 plt.show()

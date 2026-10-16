@@ -92,3 +92,13 @@ Paper: https://arxiv.org/abs/2603.06914
 ## Disclaimer
 
 This project is developed for educational and research purposes and is not affiliated with the original SysNav authors.
+
+## Demo
+
+This animation shows the complete semantic-guided object navigation process:
+- start from the bedroom
+- navigate across rooms using A* path planning
+- explore the kitchen with candidate viewpoints
+- detect and find the refrigerator
+
+![Semantic Navigation Demo](assets/semantic_explore.gif)
